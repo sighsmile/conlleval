@@ -7,7 +7,7 @@
 #               http://cnts.uia.ac.be/conll2003/ner/example.tex
 #            r: accept raw result tags (without B- and I- prefix;
 #                                       assumes one word per chunk)
-#            d: alternative delimiter tag (default is single space)
+#            d: alternative delimiter tag (default is white space or tab)
 #            o: alternative outside tag (default is O)
 # note:      the file should contain lines with items separated
 #            by $delimiter characters (default space). The final
@@ -26,7 +26,6 @@
 from __future__ import division, print_function, unicode_literals
 import argparse
 import sys
-import re
 from collections import defaultdict
 
 # sanity check
@@ -228,7 +227,7 @@ def countChunks(fileIterator, args):
 
     return correctChunk, foundGuessed, foundCorrect, correctTags, tokenCounter
 
-def evaluate(correctChunk, foundGuessed, foundCorrect, latex=False):
+def evaluate(correctChunk, foundGuessed, foundCorrect, correctTags, tokenCounter, latex=False):
     # sum counts
     correctChunkSum = sum(correctChunk.values())
     foundGuessedSum = sum(foundGuessed.values())
@@ -278,6 +277,6 @@ if __name__ == "__main__":
     correctChunk, foundGuessed, foundCorrect, correctTags, tokenCounter = countChunks(sys.stdin, args)
 
     # compute metrics and print
-    evaluate(correctChunk, foundGuessed, foundCorrect, latex=args.latex)
+    evaluate(correctChunk, foundGuessed, foundCorrect, correctTags, tokenCounter, latex=args.latex)
 
     sys.exit(0)
