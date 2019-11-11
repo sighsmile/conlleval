@@ -1,5 +1,9 @@
 # conlleval-python
 
+**NOTE: This repository is currently not managed. Please check the Issues page for bug reports. I will try to fix it later. Sorry for any inconvenience.**
+
+## Intro
+
 This repository contains two scripts:
 
 - **conlleval_perl.py**: the Python equivalent of the Perl script [`conlleval`](http://www.cnts.ua.ac.be/conll2000/chunking/conlleval.txt), which can be used for measuring the performance of a system that has processed the CoNLL-2000 shared task data. 
@@ -59,6 +63,8 @@ prec, rec, f1 = evaluate(true_tags, pred_tags, verbose=False)
 
 **NOTE: This script can be used with IOB2 or IOBES tagging scheme. 
 If you are using a different scheme, please convert to IOB2 or IOBES.**
+
+**EDIT: There has been report that IOB2 support is broken (see Issues page). This has not been fixed yet.**
 
 For an example of data format to be used with this script, check out the accompanied `output.txt` file in this repository, or the original source at http://www.cnts.ua.ac.be/conll2000/chunking/output.txt.gz.
 
