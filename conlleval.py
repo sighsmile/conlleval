@@ -37,8 +37,8 @@ def split_tag(chunk_tag):
     B-PER -> (B, PER)
     O -> (O, None)
     """
-    if chunk_tag == 'O':
-        return ('O', None)
+    if '-' not in chunk_tag:
+        return (None, chunk_tag)
     return chunk_tag.split('-', maxsplit=1)
 
 def is_chunk_end(prev_tag, tag):
@@ -173,7 +173,6 @@ def get_result(correct_chunks, true_chunks, pred_chunks,
 
     nonO_correct_counts = sum(v for k, v in correct_counts.items() if k != 'O')
     nonO_true_counts = sum(v for k, v in true_counts.items() if k != 'O')
-
     chunk_types = sorted(list(set(list(true_chunks) + list(pred_chunks))))
 
     # compute overall precision, recall and FB1 (default values are 0.0)
